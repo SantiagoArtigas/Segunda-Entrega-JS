@@ -1,0 +1,54 @@
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f4f4f4;
+  text-align: center;
+}
+
+h1, h2 {
+  color: #333;
+}
+
+.formulario {
+  margin: 20px;
+}
+
+input {
+  padding: 10px;
+  margin: 5px;
+}
+
+button {
+  padding: 8px 12px;
+  margin-left: 5px;
+  background-color: #2ecc71;
+  border: none;
+  color: white;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #27ae60;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+}
+
+li {
+  background: white;
+  margin: 5px auto;
+  padding: 10px;
+  width: 300px;
+  display: flex;
+  justify-content: space-between;
+  border-radius: 5px;
+}
+
+.eliminar {
+  background-color: red;
+}
+
+.catalogo-btn {
+  background-color: #3498db;
+}
