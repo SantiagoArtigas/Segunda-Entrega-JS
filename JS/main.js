@@ -8,17 +8,17 @@ const btnAgregar = document.getElementById("agregar")
 const btnVaciar = document.getElementById("vaciar")
 const catalogoHTML = document.getElementById("catalogo")
 
-
-function Producto(nombre, precio){
-  this.nombre = nombre
-  this.precio = precio
+class Producto {
+  constructor(nombre, precio) {
+    this.nombre = nombre
+    this.precio = precio
+  }
 }
-
 
 async function cargarCatalogo() {
   try {
-    const respuesta = await fetch("./DATA/productos.json")
-    catalogo = await respuesta.json()
+    const response = await fetch("./data/productos.json")
+    catalogo = await response.json()
     renderizarCatalogo()
   } catch (error) {
     console.error("Error cargando JSON:", error)
@@ -29,14 +29,14 @@ function renderizarCatalogo() {
   catalogoHTML.innerHTML = ""
 
   catalogo.forEach((prod, index) => {
-    const lista = document.createElement("li")
+    const li = document.createElement("li")
 
-    lista.innerHTML = `
+    li.innerHTML = `
       ${prod.nombre} - $${prod.precio}
       <button class="catalogo-btn" data-id="${index}">Agregar</button>
-    `
+    `;
 
-    catalogoHTML.appendChild(lista);
+    catalogoHTML.appendChild(li)
   })
 
   document.querySelectorAll(".catalogo-btn").forEach(btn => {
@@ -57,15 +57,15 @@ function renderizarCarrito() {
   let suma = 0
 
   carrito.forEach((producto, index) => {
-    const lista = document.createElement("li")
+    const li = document.createElement("li")
 
-    lista.innerHTML = `
+    li.innerHTML = `
       ${producto.nombre} - $${producto.precio}
       <button class="eliminar" data-id="${index}">X</button>
     `
 
-    lista.appendChild(lista);
-    suma += producto.precio;
+    lista.appendChild(li)
+    suma += producto.precio
   })
 
   total.innerText = "Total: $" + suma
@@ -81,7 +81,7 @@ function agregarProducto() {
   const nombreInput = document.getElementById("nombre")
   const precioInput = document.getElementById("precio")
 
-  const nombre = nombreInput.value
+  const nombre = nombreInput.value.trim()
   const precio = parseFloat(precioInput.value)
 
   if (nombre === "" || isNaN(precio) || precio <= 0) {
@@ -94,7 +94,7 @@ function agregarProducto() {
   nombreInput.value = ""
   precioInput.value = ""
 
-  renderizarCarrito();
+  renderizarCarrito()
 }
 
 function eliminarProducto(e) {
